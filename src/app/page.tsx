@@ -11,6 +11,7 @@ import {
 } from "react-icons/io";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import DashboardSidebar from "@/components/DashboardSidebar/DashboardSidebar";
+import Image from "next/image";
 
 export default function Page() {
   const videoData = [
@@ -206,7 +207,8 @@ export default function Page() {
               return (
                 <div key={item.name} className="flex flex-col cursor-pointer">
                   <div>
-                    <img
+                    <Image
+                      alt="img"
                       className="rounded-md w-auto h-[150px]"
                       src={item?.imageLink}
                     />

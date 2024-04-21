@@ -1,113 +1,228 @@
-import Image from "next/image";
+"use client";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import React from "react";
+import { FiMic, FiScissors, FiUserPlus, FiVideo } from "react-icons/fi";
+import { IoIosArrowForward } from "react-icons/io";
+import { MdOutlineElectricBolt } from "react-icons/md";
+import {
+  IoIosHelpCircleOutline,
+  IoMdNotificationsOutline,
+} from "react-icons/io";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useRouter } from "next/navigation";
+import DashboardSidebar from "@/components/DashboardSidebar/DashboardSidebar";
 
-export default function Home() {
+export default function page() {
+  const router = useRouter();
+  const videoData = [
+    {
+      id: 1,
+      name: "Project 1",
+      videoLink: "http://www.w3schools.com/html/mov_bbb.mp4",
+      status: "Draft",
+      duration: "30 M",
+    },
+    {
+      id: 2,
+      name: "Project 2",
+      videoLink: "http://www.w3schools.com/html/mov_bbb.mp4",
+      status: "Draft",
+      duration: "30 M",
+    },
+    {
+      id: 3,
+      name: "Project 3",
+      videoLink: "http://www.w3schools.com/html/mov_bbb.mp4",
+      status: "Draft",
+      duration: "30 M",
+    },
+  ];
+
+  const popTemplates = [
+    {
+      id: 1,
+      name: "img1",
+      imageLink:
+        "https://s.tmimgcdn.com/scr/1200x750/262900/business-agency-corporate-service-social-media-post-design-template-58_262935-original.jpg",
+    },
+    {
+      id: 2,
+      name: "img2",
+      imageLink:
+        "https://img.freepik.com/free-vector/hand-drawn-flat-design-business-presentation-templates_23-2149271664.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1713312000&semt=ais",
+    },
+    {
+      id: 3,
+      name: "img3",
+      imageLink:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlBcrhRPcdPHw4JCIyTAHJaeNvDIUVkJtx7Q&usqp=CAU",
+    },
+    {
+      id: 4,
+      name: "img4",
+      imageLink:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5bm-bt0Dxm6SO9cMYDahqyZIIyb6myhWJdQ&usqp=CAU",
+    },
+  ];
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="flex">
+      <DashboardSidebar />
+      <div className="bg-[#f5f6fa] w-full min-h-[100vh] p-4 flex flex-col gap-4">
+        <div className="flex justify-between items-center ">
+          <div className="flex gap-4 items-center">
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg
+                  className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+              </div>
+              <input
+                type="search"
+                id="default-search"
+                className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white "
+                placeholder="Search "
+                required
+              />
+            </div>
+            <Link
+              className=" bg-red-600 p-1 px-2 rounded-md text-white"
+              href={"/editor"}
+            >
+              Go to Editor
+            </Link>
+          </div>
+          <div className="flex items-center gap-3 ">
+            <div>
+              <Button
+                className="flex items-center gap-3 text-black bg-[#fff1dd]"
+                variant="secondary"
+              >
+                Upgrade <MdOutlineElectricBolt color="#ffa31a" />
+              </Button>
+            </div>
+            <div>
+              <Button
+                className="flex items-center gap-3 text-black bg-[#eeeef0]"
+                variant="secondary"
+              >
+                Invite <FiUserPlus />
+              </Button>
+            </div>
+            <div>
+              <IoIosHelpCircleOutline size={30} />
+            </div>
+            <div>
+              <IoMdNotificationsOutline size={30} />
+            </div>
+            <div>
+              <Avatar>
+                <AvatarImage
+                  src="https://github.com/shadcn.png"
+                  alt="@shadcn"
+                />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </div>
+          </div>
+        </div>
+        <div className="mt-5">
+          <h1 className="text-2xl">
+            Let's Create Some <b>Videos</b>
+          </h1>
+          <div className="flex flex-wrap gap-5 items-center mt-3">
+            <div
+              onClick={() => router.push("/dashboard")}
+              className="flex gap-3 items-center cursor-pointer p-3 drop-shadow bg-white hover:text-[#9d45ff] rounded-md"
+            >
+              <div className="bg-[#c899fd1a] p-2 rounded-md block ">
+                <FiScissors color="#9d45ff" />
+              </div>
+              Create Project
+            </div>
+
+            <div className="flex gap-3 items-center p-3 cursor-pointer drop-shadow hover:text-[#0098fd] bg-white rounded-md">
+              <div className="bg-[#eff9ff] p-2 rounded-md block ">
+                <FiMic color="#0098fd" />
+              </div>
+              Create Project
+            </div>
+            <div className="flex gap-3 items-center cursor-pointer p-3 hover:text-[#ff646a] drop-shadow bg-white rounded-md">
+              <div className="bg-[#ff6a701a] p-2 rounded-md block ">
+                <FiVideo color="#ff646a" />
+              </div>
+              Record Videos
+            </div>
+          </div>
+        </div>
+        <div className="">
+          <div className="flex justify-between items-center ">
+            <h2 className=" font-semibold">My Recend Videos</h2>
+            <Link className="flex items-center gap-1" href={"/all-videos"}>
+              All Videos <IoIosArrowForward />
+            </Link>
+          </div>
+          <div className="flex items-center gap-3 flex-wrap py-3">
+            {videoData.map((item: any) => {
+              return (
+                <div key={item.name} className="flex flex-col">
+                  <div className="relative">
+                    <video
+                      className="rounded-md w-auto h-[200px]"
+                      src={item.videoLink}
+                    ></video>
+                    <span className="absolute bottom-2 right-2 bg-[#00000090] text-white rounded-sm p-1 text-[12px]">
+                      {item.duration}
+                    </span>
+                    <span className="absolute top-2 right-2 bg-[#ed8e4581] text-white font-semibold rounded-sm  px-2 text-[12px]">
+                      {item.status}
+                    </span>
+                  </div>
+                  <h4 className="text-[14px] font-semibold mt-2">
+                    {item.name}
+                  </h4>
+                  <p className="text-[12px]">10 Minutes Ago</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="">
+          <div className="flex justify-between items-center ">
+            <h2 className=" font-semibold">Start with Popular Templates</h2>
+            <Link className="flex items-center gap-1" href={"/all-videos"}>
+              See All <IoIosArrowForward />
+            </Link>
+          </div>
+          <div className="flex items-center gap-3 flex-wrap py-3">
+            {popTemplates?.map((item: any) => {
+              return (
+                <div key={item.name} className="flex flex-col cursor-pointer">
+                  <div>
+                    <img
+                      className="rounded-md w-auto h-[150px]"
+                      src={item?.imageLink}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }
+1;

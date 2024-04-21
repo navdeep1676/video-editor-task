@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video to Images</title>
+  </head>
+  <body>
+    <video id="video" width="400" height="300" controls>
+      <source
+        src="https://www.w3schools.com/html/mov_bbb.mp4"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+    <canvas id="canvas" style="display: none"></canvas>
+    <script>
+      // Function to convert video to array of images
+      function videoToImages(videoSrc, intervalMs) {
+        const video = document.getElementById("video");
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        const images = [];
+
+        video.onloadedmetadata = function () {
+          const duration = video.duration;
+          const numFrames = Math.floor((duration * 1000) / intervalMs);
+
+          for (let i = 0; i < numFrames; i++) {
+            const time = (i * intervalMs) / 1000;
+            video.currentTime = time;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL("image/jpeg");
+            images.push(imageData);
+          }
+
+          console.log(images); // Here, you can use images array as required
+        };
+
+        video.src = videoSrc;
+      }
+
+      // Usage: Call videoToImages function with video source URL and interval in milliseconds
+      videoToImages("https://www.w3schools.com/html/mov_bbb.mp4", 1000); // 1000 milliseconds = 1 second
+    </script>
+  </body>
+</html>

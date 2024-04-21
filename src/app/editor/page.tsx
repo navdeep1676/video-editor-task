@@ -300,7 +300,10 @@ export default function Page() {
                 style={{ overflowX: "scroll", overflowY: "hidden" }}
               >
                 {frames.map((frame: any, index) => (
-                  <div className="flex justify-center items-center flex-col">
+                  <div
+                    key={index}
+                    className="flex justify-center items-center flex-col"
+                  >
                     <p>{frame.time} s</p>
                     <div className="w-[120px]">
                       <img

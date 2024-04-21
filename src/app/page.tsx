@@ -139,7 +139,7 @@ export default function Page() {
         </div>
         <div className="mt-5">
           <h1 className="text-2xl">
-            Let's Create Some <b>Videos</b>
+            Let&apos;s Create Some <b>Videos</b>
           </h1>
           <div className="flex flex-wrap gap-5 items-center mt-3">
             <div className="flex gap-3 items-center cursor-pointer p-3 drop-shadow bg-white hover:text-[#9d45ff] rounded-md">

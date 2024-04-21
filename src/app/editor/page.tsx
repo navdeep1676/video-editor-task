@@ -293,11 +293,11 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <div>
+            <div className="">
               <canvas ref={cref} hidden id="canvas"></canvas>
 
               <div
-                className="flex"
+                className="flex px-3"
                 style={{ overflowX: "scroll", overflowY: "hidden" }}
               >
                 {frames.map((frame: any, index) => (
@@ -305,7 +305,19 @@ export default function Page() {
                     key={index}
                     className="flex justify-start items-start flex-col"
                   >
-                    <p>{frame.time} s</p>
+                    <p className="relative left-[-10px]">{frame.time} s</p>
+                    <div className="lines flex justify-between w-full">
+                      <span className="w-[2px] h-[10px] bg-black block"></span>
+                      <span className="w-[2px] h-[10px] bg-black block"></span>
+                      <span className="w-[2px] h-[10px] bg-black block"></span>
+                      <span className="w-[2px] h-[10px] bg-black block"></span>
+                      <span className="w-[2px] h-[10px] bg-black block"></span>
+                      <span className="w-[2px] h-[10px] bg-black block"></span>
+                      <span className="w-[2px] h-[10px] bg-black block"></span>
+                      <span className="w-[2px] h-[10px] bg-black block"></span>
+                      <span className="w-[2px] h-[10px] bg-black block"></span>
+                      <span className="w-[2px] h-[10px] bg-black block"></span>
+                    </div>
                     <div className="w-[120px] mt-2">
                       <Image
                         width={200}

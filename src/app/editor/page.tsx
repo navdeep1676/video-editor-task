@@ -297,7 +297,7 @@ export default function Page() {
               <canvas ref={cref} hidden id="canvas"></canvas>
 
               <div
-                className="flex px-3"
+                className="flex px-3 timeseekbar"
                 style={{ overflowX: "scroll", overflowY: "hidden" }}
               >
                 {frames.map((frame: any, index) => (

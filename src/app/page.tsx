@@ -68,7 +68,10 @@ export default function Page() {
   return (
     <div className="flex">
       <DashboardSidebar />
-      <ScrollArea className="min-h-[100vh] fixed left-[300px]">
+      <ScrollArea
+        style={{ width: "calc(100vw - 318px)" }}
+        className="min-h-[100vh]  fixed left-[300px]"
+      >
         <div className="bg-[#f5f6fa] w-full min-h-[100vh] p-4 flex flex-col gap-4">
           <div className="flex justify-between items-center ">
             <div className="flex gap-4 items-center">

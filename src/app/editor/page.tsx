@@ -22,7 +22,7 @@ import { Button } from "@/components/ui/button";
 import { FiUserPlus, FiScissors } from "react-icons/fi";
 import { CiCirclePlus } from "react-icons/ci";
 import { Slider } from "@/components/ui/slider";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CustomTooltip from "@/components/CustomTooltip/CustomTooltip";
 import CustomSelect from "@/components/CustomSelect/CustomSelect";
 import VideoEditor from "@/components/TimeSeeker/VideoEditor";
@@ -30,6 +30,38 @@ import Link from "next/link";
 
 export default function Page() {
   const [resizePercentage, setResizePercentage] = useState(10);
+  const videoRef = useRef(null);
+  const cref = useRef(null);
+  const [frames, setFrames] = useState([]);
+
+  // Function to capture frames from the video
+  const captureFrames = async () => {
+    const video: any = videoRef.current;
+    const canvas: any = cref.current;
+    const ctx: any = canvas.getContext("2d");
+    const capturedFrames: any = [];
+
+    canvas.width = video.width;
+    canvas.height = video.height;
+
+    // Iterate over the video duration and capture frames
+    for (let i = 0; i < video.duration; i += 1) {
+      video.currentTime = i;
+      await new Promise((resolve: any) => {
+        video.onseeked = () => {
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          const frameDataUrl = canvas.toDataURL("image/jpeg");
+          capturedFrames.push(frameDataUrl);
+          resolve();
+        };
+      });
+    }
+
+    setFrames(capturedFrames);
+  };
+  useEffect(() => {
+    captureFrames();
+  }, []);
   return (
     <ResizablePanelGroup
       direction="vertical"
@@ -166,8 +198,13 @@ export default function Page() {
               <video
                 className="w-full  m-3"
                 style={{ height: `calc(100% - ${resizePercentage + 5}%)` }}
-                src="https://www.w3schools.com/html/mov_bbb.mp4"
-              ></video>
+                width={200}
+                height={200}
+                ref={videoRef}
+              >
+                <source src="/v.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </ResizablePanel>
         </ResizablePanelGroup>
@@ -257,7 +294,21 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <VideoEditor />
+            <div>
+              <canvas ref={cref} hidden id="canvas"></canvas>
+
+              <div className="flex" style={{ overflowY: "scroll" }}>
+                {frames.map((frame, index) => (
+                  <img
+                    width={100}
+                    height={100}
+                    key={index}
+                    src={frame}
+                    alt={`Frame ${index}`}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </ResizablePanel>

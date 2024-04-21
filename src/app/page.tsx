@@ -13,7 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useRouter } from "next/navigation";
 import DashboardSidebar from "@/components/DashboardSidebar/DashboardSidebar";
 
-export default function page() {
+export default function Page() {
   const router = useRouter();
   const videoData = [
     {

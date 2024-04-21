@@ -42,7 +42,7 @@ export default function Page() {
   const captureFrames = async () => {
     const video: any = videoRef.current;
     const canvas: any = cref.current;
-    const ctx: any = canvas.getContext("2d");
+    const ctx: any = canvas?.getContext("2d");
     const capturedFrames: any = [];
     canvas.width = video.width;
     canvas.height = video.height;

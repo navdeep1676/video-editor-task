@@ -33,25 +33,23 @@ export default function Page() {
   const videoRef = useRef(null);
   const cref = useRef(null);
   const [frames, setFrames] = useState([]);
-
   // Function to capture frames from the video
   const captureFrames = async () => {
     const video: any = videoRef.current;
     const canvas: any = cref.current;
     const ctx: any = canvas.getContext("2d");
     const capturedFrames: any = [];
-
     canvas.width = video.width;
     canvas.height = video.height;
 
     // Iterate over the video duration and capture frames
-    for (let i = 0; i < video.duration; i += 1) {
+    for (let i = 0; i < video.duration; i += 10) {
       video.currentTime = i;
       await new Promise((resolve: any) => {
         video.onseeked = () => {
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
           const frameDataUrl = canvas.toDataURL("image/jpeg");
-          capturedFrames.push(frameDataUrl);
+          capturedFrames.push({ src: frameDataUrl, time: i });
           resolve();
         };
       });
@@ -297,15 +295,23 @@ export default function Page() {
             <div>
               <canvas ref={cref} hidden id="canvas"></canvas>
 
-              <div className="flex" style={{ overflowY: "scroll" }}>
-                {frames.map((frame, index) => (
-                  <img
-                    width={100}
-                    height={100}
-                    key={index}
-                    src={frame}
-                    alt={`Frame ${index}`}
-                  />
+              <div
+                className="flex"
+                style={{ overflowX: "scroll", overflowY: "hidden" }}
+              >
+                {frames.map((frame: any, index) => (
+                  <div className="flex justify-center items-center flex-col">
+                    <p>{frame.time} s</p>
+                    <div className="w-[120px]">
+                      <img
+                        width={200}
+                        height={100}
+                        key={index}
+                        src={frame.src}
+                        alt={`Frame ${index}`}
+                      />
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>

@@ -1,4 +1,6 @@
 "use client";
+import { usePathname } from "next/navigation";
+
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MdOutlineKeyboardVoice } from "react-icons/md";
 import { IoIosPlay } from "react-icons/io";
@@ -32,6 +34,8 @@ import Image from "next/image";
 export default function Page() {
   const [resizePercentage, setResizePercentage] = useState(10);
   const videoRef = useRef(null);
+  const pathname: any = usePathname();
+
   const cref = useRef(null);
   const [frames, setFrames] = useState([]);
   // Function to capture frames from the video
@@ -59,8 +63,13 @@ export default function Page() {
     setFrames(capturedFrames);
   };
   useEffect(() => {
-    captureFrames();
-  }, []);
+    if (pathname !== "/editor") {
+      return;
+    }
+    setTimeout(() => {
+      captureFrames();
+    }, 1000);
+  }, [pathname]);
   return (
     <ResizablePanelGroup
       direction="vertical"

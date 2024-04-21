@@ -27,6 +27,7 @@ import CustomTooltip from "@/components/CustomTooltip/CustomTooltip";
 import CustomSelect from "@/components/CustomSelect/CustomSelect";
 import VideoEditor from "@/components/TimeSeeker/VideoEditor";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Page() {
   const [resizePercentage, setResizePercentage] = useState(10);
@@ -302,11 +303,11 @@ export default function Page() {
                 {frames.map((frame: any, index) => (
                   <div
                     key={index}
-                    className="flex justify-center items-center flex-col"
+                    className="flex justify-start items-start flex-col"
                   >
                     <p>{frame.time} s</p>
-                    <div className="w-[120px]">
-                      <img
+                    <div className="w-[120px] mt-2">
+                      <Image
                         width={200}
                         height={100}
                         key={index}

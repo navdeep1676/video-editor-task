@@ -30,6 +30,7 @@ import CustomSelect from "@/components/CustomSelect/CustomSelect";
 import VideoEditor from "@/components/TimeSeeker/VideoEditor";
 import Link from "next/link";
 import Image from "next/image";
+import CustomSlider from "@/components/CustomSlider/CustomSlider";
 
 export default function Page() {
   const [resizePercentage, setResizePercentage] = useState(10);
@@ -304,7 +305,7 @@ export default function Page() {
           <div>
             <div className="">
               <canvas ref={cref} hidden id="canvas"></canvas>
-
+              <CustomSlider />
               <div
                 className="flex px-3 timeseekbar"
                 style={{ overflowX: "scroll", overflowY: "hidden" }}

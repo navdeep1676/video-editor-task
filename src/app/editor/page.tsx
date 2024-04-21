@@ -27,7 +27,6 @@ import { Slider } from "@/components/ui/slider";
 import { useEffect, useRef, useState } from "react";
 import CustomTooltip from "@/components/CustomTooltip/CustomTooltip";
 import CustomSelect from "@/components/CustomSelect/CustomSelect";
-import VideoEditor from "@/components/TimeSeeker/VideoEditor";
 import Link from "next/link";
 import Image from "next/image";
 import CustomSlider from "@/components/CustomSlider/CustomSlider";
@@ -67,9 +66,10 @@ export default function Page() {
     if (pathname !== "/editor") {
       return;
     }
+    captureFrames();
     setTimeout(() => {
       captureFrames();
-    }, 1000);
+    }, 2000);
   }, [pathname]);
   return (
     <ResizablePanelGroup

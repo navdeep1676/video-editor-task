@@ -10,11 +10,9 @@ import {
   IoMdNotificationsOutline,
 } from "react-icons/io";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useRouter } from "next/navigation";
 import DashboardSidebar from "@/components/DashboardSidebar/DashboardSidebar";
 
 export default function Page() {
-  const router = useRouter();
   const videoData = [
     {
       id: 1,
@@ -143,10 +141,7 @@ export default function Page() {
             Let's Create Some <b>Videos</b>
           </h1>
           <div className="flex flex-wrap gap-5 items-center mt-3">
-            <div
-              onClick={() => router.push("/dashboard")}
-              className="flex gap-3 items-center cursor-pointer p-3 drop-shadow bg-white hover:text-[#9d45ff] rounded-md"
-            >
+            <div className="flex gap-3 items-center cursor-pointer p-3 drop-shadow bg-white hover:text-[#9d45ff] rounded-md">
               <div className="bg-[#c899fd1a] p-2 rounded-md block ">
                 <FiScissors color="#9d45ff" />
               </div>

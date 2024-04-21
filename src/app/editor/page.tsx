@@ -155,7 +155,7 @@ export default function Page() {
                   Invite <FiUserPlus />
                 </Button>
                 <Button
-                  className="flex items-center gap-3 bg-black text-white"
+                  className="flex items-center gap-3 bg-black hover:bg-black text-white"
                   variant="secondary"
                 >
                   Save <IoMdCheckmark />

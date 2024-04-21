@@ -6,7 +6,7 @@ import { TbBrandAirtable, TbTemplate } from "react-icons/tb";
 
 function DashboardSidebar() {
   return (
-    <aside className="w-[300px] p-3">
+    <aside className="w-[300px] p-3 h-[100vh] fixed top-0 left-0">
       <h1 className="text-4xl font-extrabold">VEED.IO</h1>
       <div className="flex flex-col gap-3">
         <div className="flex gap-3 items-center my-5">
